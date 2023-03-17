@@ -1,0 +1,22 @@
+statements = { statement ";" };
+statement = expr
+        | assignment
+        | repeat_stmt
+        | if_stmt;
+
+expr = mult, { [ "+" | "-" ] mult};
+factor = ( [ "-" | "+" ], integer | identifier ) | "(", expr, ")";
+mult = factor, { [ "*" | "/" ] factor};
+
+comp_expr = expr, { [ ">" | "<" ] expr};
+
+integer = digit, { digit };
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+letter = "a" | "b" | ... | "z" | "A" | "B" | ... | "Z";
+
+assignment = "let", identifier, "=", expr | ternary;
+identifier = letter | "_", { digit | letter | "_" };
+ternary = comp_expr, "?", expr, ":", expr;
+repeat_stmt = "repeat", expr, "{", statements, "}";
+cond_stmt = comp_expr, "{", statements, "}", { "elif", cond_stmt}, { "else", "{", statements, "}" };
+if_stmt = "if", cond_stmt;
