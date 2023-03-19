@@ -1,6 +1,6 @@
-statements = { statement ";" };
-statement = expr
-        | assignment
+statements = { statement };
+statement = expr ";"
+        | assignment ";"
         | repeat_stmt
         | if_stmt;
 
