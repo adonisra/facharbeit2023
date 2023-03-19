@@ -140,6 +140,6 @@ class Lexer:
                 self.skip_comment()
 
             else:
-                raise ValueError(f"{self.char!r} not accepted ({line}:{column})")
+                raise ValueError(f"{self.char!r} wird nicht akzeptiert ({line}:{column})")
 
         return tokens

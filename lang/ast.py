@@ -278,6 +278,6 @@ class SymbolTable(t.Generic[K, V]):
 
     def get_or_raise(self, name: K) -> t.Union[t.NoReturn, V]:
         if (node := self.symbols.get(name)) is None:
-            raise ValueError(f"Variable {name} not found")
+            raise ValueError(f"Variable {name} wurde nicht gefunden")
         
         return node

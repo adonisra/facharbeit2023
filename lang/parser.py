@@ -33,12 +33,12 @@ class Parser:
         curr_token = self.get_token()
 
         if not curr_token:
-            raise EOFError("Reached end of file")
+            raise EOFError("Das ende der datei wurde erreicht")
 
         if curr_token.type not in token_types:
             raise ValueError(
-                f"Expected {join([t.value.lower() for t in token_types], last='or')}, "
-                f"got {curr_token.value!r} ({curr_token.line}:{curr_token.col})"
+                f"Erwartet {join([t.value.lower() for t in token_types], last='oder')}, "
+                f"erhalten {curr_token.value!r} ({curr_token.line}:{curr_token.col})"
             )
 
         self.pos += 1
@@ -72,7 +72,7 @@ class Parser:
 
             else:
                 raise ValueError(
-                    "Statement must be an assignment, a conditional or an expression"
+                    "Anweisung muss eine Zuweisung, Bedingung oder ein Ausdruck sein"
                 )
             
         return stats
@@ -117,7 +117,7 @@ class Parser:
             value = self.ternary(condition=value)
 
         if isinstance(value, ast.CompOp):
-            raise ValueError("Can't assign to comparison.")
+            raise ValueError("ES können keine Vergleiche zugewiesen werden")
 
         return ast.Assignment(token.value, value)
     
